@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, useScroll, useTransform } from "framer-motion"
-import { Download } from 'lucide-react'
+import { Download } from "lucide-react"
 import Image from "next/image"
 import { useRef } from "react"
 import { useScrollReveal } from "../hooks/useScrollReveal"
@@ -11,16 +11,16 @@ export default function YearInReview() {
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   })
-  
+
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"])
 
   return (
     <section ref={containerRef} className="py-12 bg-gradient-slate-storm relative overflow-hidden">
       {/* Geometric Pattern Overlay */}
       <div className="absolute inset-0 geometric-overlay opacity-30"></div>
-      
+
       <motion.div style={{ y }} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           ref={ref}
@@ -53,7 +53,7 @@ export default function YearInReview() {
                     transition={{ duration: 0.6, delay: 0.4 }}
                   >
                     <Image
-                      src="/images/dolphin-capital-logo.png"
+                      src="/images/dolphin-capital-logo-new.png"
                       alt="Dolphin Capital Logo"
                       width={80}
                       height={80}
@@ -62,7 +62,7 @@ export default function YearInReview() {
                   </motion.div>
 
                   {/* Title */}
-                  <motion.div 
+                  <motion.div
                     className="text-center"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={isVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
@@ -78,7 +78,7 @@ export default function YearInReview() {
                   </motion.div>
 
                   {/* Footer */}
-                  <motion.div 
+                  <motion.div
                     className="text-center"
                     initial={{ opacity: 0, x: 20 }}
                     animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
@@ -92,7 +92,7 @@ export default function YearInReview() {
 
               {/* Report Details */}
               <div className="p-8 lg:p-10 flex flex-col justify-center bg-white">
-                <motion.div 
+                <motion.div
                   className="mb-8"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -104,9 +104,9 @@ export default function YearInReview() {
                       { label: "Annual Return", value: "+15.2%", color: "text-green-600" },
                       { label: "Assets Under Management", value: "$2.8M", color: "text-navy" },
                       { label: "Active Members", value: "52", color: "text-navy" },
-                      { label: "Report Pages", value: "48", color: "text-navy" }
+                      { label: "Report Pages", value: "48", color: "text-navy" },
                     ].map((item, index) => (
-                      <motion.div 
+                      <motion.div
                         key={item.label}
                         className="flex justify-between items-center py-2 border-b border-storm/30"
                         initial={{ opacity: 0, x: -20 }}
@@ -120,7 +120,7 @@ export default function YearInReview() {
                   </div>
                 </motion.div>
 
-                <motion.div 
+                <motion.div
                   className="mb-8"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -130,11 +130,11 @@ export default function YearInReview() {
                   <ul className="space-y-2">
                     {[
                       "Portfolio Performance Analysis",
-                      "Sector Allocation & Strategy", 
+                      "Sector Allocation & Strategy",
                       "ESG Integration Progress",
-                      "Student Development Programs"
+                      "Student Development Programs",
                     ].map((item, index) => (
-                      <motion.li 
+                      <motion.li
                         key={item}
                         className="flex items-start text-deep"
                         initial={{ opacity: 0, x: -10 }}

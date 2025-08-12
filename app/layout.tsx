@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from 'next/font/google'
+import { Inter } from "next/font/google"
 import "./globals.css"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
@@ -28,9 +28,9 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   verification: {
@@ -53,14 +53,14 @@ export default function RootLayout({
         <meta httpEquiv="X-Frame-Options" content="DENY" />
         <meta httpEquiv="X-XSS-Protection" content="1; mode=block" />
         <meta name="referrer" content="strict-origin-when-cross-origin" />
-        
+
         {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        
+
         {/* Favicon */}
-        <link rel="icon" href="/images/dolphin-capital-logo.png" />
-        <link rel="apple-touch-icon" href="/images/dolphin-capital-logo.png" />
+        <link rel="icon" href="/images/dolphin-capital-logo-new.png" />
+        <link rel="apple-touch-icon" href="/images/dolphin-capital-logo-new.png" />
       </head>
       <body className={`${inter.className} bg-gradient-to-br from-lightSlate to-parchment text-primary-700`}>
         <ErrorBoundary>
@@ -72,10 +72,10 @@ export default function RootLayout({
             <Footer />
           </div>
         </ErrorBoundary>
-        
+
         {/* Skip to main content for accessibility */}
-        <a 
-          href="#main-content" 
+        <a
+          href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary-600 text-white px-4 py-2 rounded-lg z-50"
         >
           Skip to main content

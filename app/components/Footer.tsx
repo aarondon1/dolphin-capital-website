@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link"
 import Image from "next/image"
-import { Mail, Linkedin, Twitter, Instagram, ExternalLink } from 'lucide-react'
+import { Mail, Linkedin, Twitter, Instagram, ExternalLink } from "lucide-react"
 
 export default function Footer() {
   return (
@@ -12,7 +12,7 @@ export default function Footer() {
           <div className="md:col-span-2">
             <Link href="/" className="flex items-center mb-4">
               <Image
-                src="/images/dolphin-capital-logo.png"
+                src="/images/dolphin-capital-logo-new.png"
                 alt="Dolphin Capital Logo"
                 width={60}
                 height={60}
