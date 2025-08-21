@@ -3,18 +3,22 @@
 import type React from "react"
 
 import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, Clock, Send, AlertTriangle } from 'lucide-react'
+import { Mail, Phone, MapPin, Clock, Send, AlertTriangle } from "lucide-react"
 import { useState, useEffect, useCallback } from "react"
-import { 
-  sanitizeInput, 
-  sanitizeEmail, 
-  validateRequired, 
-  validateEmail, 
+import {
+  sanitizeInput,
+  sanitizeEmail,
+  validateRequired,
+  validateEmail,
   validateTextLength,
   formRateLimiter,
   generateFormToken,
-  validateFormToken
-} from '../utils/security'
+  validateFormToken,
+} from "../utils/security"
+
+const FORMSPREE_CONTACT_ENDPOINT = "https://formspree.io/f/xqalvbqk"
+
+// Note: Add your site domain to Formspree's Allowed Domains list in your form settings
 
 interface FormData {
   name: string
@@ -34,7 +38,7 @@ export default function ContactInfo() {
     subject: "",
     message: "",
   })
-  
+
   const [formErrors, setFormErrors] = useState<FormErrors>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -78,7 +82,7 @@ export default function ContactInfo() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     // Validate form token
     if (!validateFormToken(formToken)) {
       setFormErrors({ general: "Invalid form submission. Please refresh and try again." })
@@ -86,7 +90,7 @@ export default function ContactInfo() {
     }
 
     // Check rate limiting
-    const userIdentifier = formData.email || 'anonymous'
+    const userIdentifier = formData.email || "anonymous"
     if (!formRateLimiter.isAllowed(userIdentifier)) {
       const remainingTime = Math.ceil(formRateLimiter.getRemainingTime(userIdentifier) / 60000)
       setRateLimitError(`Too many attempts. Please wait ${remainingTime} minutes before trying again.`)
@@ -113,11 +117,22 @@ export default function ContactInfo() {
         userAgent: navigator.userAgent.slice(0, 200),
       }
 
-      // Simulate secure form submission
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      const response = await fetch(FORMSPREE_CONTACT_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...sanitizedData,
+          _subject: `Dolphin Capital — Website Message: ${sanitizedData.subject}`,
+          _replyto: sanitizedData.email,
+          _gotcha: "", // This should remain empty for legitimate submissions
+        }),
+      })
 
-      // In a real implementation, this would be sent to a secure backend endpoint
-      console.log('Secure contact form submission:', sanitizedData)
+      if (!response.ok) {
+        throw new Error("Failed to send message")
+      }
 
       setIsSubmitting(false)
       setIsSubmitted(true)
@@ -131,17 +146,17 @@ export default function ContactInfo() {
       }, 3000)
     } catch (error) {
       setIsSubmitting(false)
-      setFormErrors({ general: "An error occurred. Please try again later." })
+      setFormErrors({ general: "Failed to send message. Please try again." })
     }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    
+
     // Basic input sanitization on change
     let sanitizedValue = value
-    
-    if (name === 'email') {
+
+    if (name === "email") {
       sanitizedValue = value.toLowerCase().trim()
     } else {
       sanitizedValue = value.slice(0, 2000) // Prevent extremely long inputs
@@ -154,7 +169,7 @@ export default function ContactInfo() {
 
     // Clear specific field error when user starts typing
     if (formErrors[name]) {
-      setFormErrors(prev => {
+      setFormErrors((prev) => {
         const newErrors = { ...prev }
         delete newErrors[name]
         return newErrors
@@ -288,7 +303,9 @@ export default function ContactInfo() {
               <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                 {/* Hidden form token */}
                 <input type="hidden" name="formToken" value={formToken} />
-                
+
+                <input type="text" name="_gotcha" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-primary-700 mb-1">
@@ -303,7 +320,7 @@ export default function ContactInfo() {
                       value={formData.name}
                       onChange={handleChange}
                       className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-primary-700 ${
-                        formErrors.name ? 'border-red-300' : 'border-gray-300'
+                        formErrors.name ? "border-red-300" : "border-gray-300"
                       }`}
                       placeholder="Your full name"
                       autoComplete="name"
@@ -323,7 +340,7 @@ export default function ContactInfo() {
                       value={formData.email}
                       onChange={handleChange}
                       className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-primary-700 ${
-                        formErrors.email ? 'border-red-300' : 'border-gray-300'
+                        formErrors.email ? "border-red-300" : "border-gray-300"
                       }`}
                       placeholder="your.email@example.com"
                       autoComplete="email"
@@ -345,7 +362,7 @@ export default function ContactInfo() {
                     value={formData.subject}
                     onChange={handleChange}
                     className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-primary-700 ${
-                      formErrors.subject ? 'border-red-300' : 'border-gray-300'
+                      formErrors.subject ? "border-red-300" : "border-gray-300"
                     }`}
                     placeholder="What is this regarding?"
                     autoComplete="off"
@@ -366,7 +383,7 @@ export default function ContactInfo() {
                     value={formData.message}
                     onChange={handleChange}
                     className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-primary-700 ${
-                      formErrors.message ? 'border-red-300' : 'border-gray-300'
+                      formErrors.message ? "border-red-300" : "border-gray-300"
                     }`}
                     placeholder="Tell us how we can help you..."
                   />
