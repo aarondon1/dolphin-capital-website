@@ -18,8 +18,8 @@ const steps = [
   },
   {
     icon: Calendar,
-    title: "Orientation Program",
-    description: "Attend our intensive orientation covering investment principles and fund operations.",
+    title: "Commitment to the Team",
+    description: "Attend our weekly meetings and orientation covering investment principles and fund operations.",
     color: "from-green-500 to-teal-500",
   },
   {
@@ -96,15 +96,11 @@ export default function HowToJoin() {
                 </li>
                 <li className="flex items-start">
                   <span className="w-2 h-2 bg-primary-600 rounded-full mt-2 mr-3 flex-shrink-0" />
-                  Minimum 3.0 GPA preferred
+                  Minimum 2.5 GPA preferred
                 </li>
                 <li className="flex items-start">
                   <span className="w-2 h-2 bg-primary-600 rounded-full mt-2 mr-3 flex-shrink-0" />
-                  Sophomore standing or higher
-                </li>
-                <li className="flex items-start">
-                  <span className="w-2 h-2 bg-primary-600 rounded-full mt-2 mr-3 flex-shrink-0" />
-                  Business or related major preferred
+                  Keen interest in finance and investment and or Technology
                 </li>
               </ul>
             </div>
@@ -122,10 +118,6 @@ export default function HowToJoin() {
                 <li className="flex items-start">
                   <span className="w-2 h-2 bg-primary-600 rounded-full mt-2 mr-3 flex-shrink-0" />
                   Professional development participation
-                </li>
-                <li className="flex items-start">
-                  <span className="w-2 h-2 bg-primary-600 rounded-full mt-2 mr-3 flex-shrink-0" />
-                  One-year minimum commitment
                 </li>
               </ul>
             </div>

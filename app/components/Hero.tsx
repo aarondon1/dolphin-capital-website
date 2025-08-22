@@ -68,8 +68,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            A student-led investment fund at the College of Staten Island managing a diversified portfolio of $2.4
-            million AUM
+            A student-led investment fund at the College of Staten Island managing a diversified portfolio
           </motion.p>
           
           <motion.div 

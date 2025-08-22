@@ -9,7 +9,7 @@ const highlights = [
   {
     icon: DollarSign,
     title: "Assets Under Management",
-    value: "$2.4M",
+    value: "$200K+",
     description: "Total portfolio value managed by our student analysts",
     color: "from-green-500 to-emerald-600",
   },

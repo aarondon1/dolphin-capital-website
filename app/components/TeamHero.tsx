@@ -71,7 +71,7 @@ export default function TeamHero() {
             {[
               { value: "45+", label: "Active Members" },
               { value: "5", label: "Sectors Covered" },
-              { value: "$2.4M", label: "Assets Managed" },
+              { value: "$200k+", label: "Assets Managed" },
               { value: "3+", label: "Years Experience" }
             ].map((stat, index) => (
               <motion.div

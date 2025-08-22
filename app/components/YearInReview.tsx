@@ -93,30 +93,18 @@ export default function YearInReview() {
               {/* Report Details */}
               <div className="p-8 lg:p-10 flex flex-col justify-center bg-white">
                 <motion.div
-                  className="mb-8"
+                  className="mb-8 text-center"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ duration: 0.6, delay: 0.5 }}
                 >
-                  <h3 className="text-2xl font-bold text-navy mb-4">Performance Highlights</h3>
-                  <div className="space-y-3">
-                    {[
-                      { label: "Annual Return", value: "+15.2%", color: "text-green-600" },
-                      { label: "Assets Under Management", value: "$2.8M", color: "text-navy" },
-                      { label: "Active Members", value: "52", color: "text-navy" },
-                      { label: "Report Pages", value: "48", color: "text-navy" },
-                    ].map((item, index) => (
-                      <motion.div
-                        key={item.label}
-                        className="flex justify-between items-center py-2 border-b border-storm/30"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                        transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
-                      >
-                        <span className="text-deep">{item.label}</span>
-                        <span className={`font-semibold ${item.color}`}>{item.value}</span>
-                      </motion.div>
-                    ))}
+                  <h3 className="text-2xl font-bold text-navy mb-4">Annual Report</h3>
+                  <div className="bg-storm/10 rounded-lg p-6 mb-6">
+                    <p className="text-lg text-deep mb-2">Coming Soon</p>
+                    <p className="text-sm text-slate">
+                      Our comprehensive 2025 annual report is currently being finalized and will be available for
+                      download shortly.
+                    </p>
                   </div>
                 </motion.div>
 
@@ -131,7 +119,6 @@ export default function YearInReview() {
                     {[
                       "Portfolio Performance Analysis",
                       "Sector Allocation & Strategy",
-                      "ESG Integration Progress",
                       "Student Development Programs",
                     ].map((item, index) => (
                       <motion.li
@@ -154,13 +141,14 @@ export default function YearInReview() {
                   transition={{ duration: 0.6, delay: 0.9 }}
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  className="btn-primary flex items-center justify-center w-full"
+                  className="btn-primary flex items-center justify-center w-full opacity-50 cursor-not-allowed"
+                  disabled
                 >
                   <Download size={20} className="mr-2" />
                   Download Full Report
                 </motion.button>
 
-                <p className="text-xs text-slate mt-4 text-center">PDF • 2.8 MB • Published March 2025</p>
+                <p className="text-xs text-slate mt-4 text-center">PDF • Coming Soon • Expected by the end of 2025</p>
               </div>
             </div>
           </motion.div>

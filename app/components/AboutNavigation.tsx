@@ -7,10 +7,10 @@ import { useScrollReveal } from "../hooks/useScrollReveal"
 const navigationItems = [
   {
     id: "history",
-    title: "Our History",
+    title: "Our Mission",
     subtitle: "Foundation & Growth",
     icon: History,
-    description: "From humble beginnings to managing $2.4M in assets",
+    description: "Our humble beginnings and the mission for future growth",
     color: "from-navy to-deep"
   },
   {

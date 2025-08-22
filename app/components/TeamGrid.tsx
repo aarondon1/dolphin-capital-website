@@ -162,40 +162,6 @@ export default function TeamGrid() {
             </motion.div>
           ))}
         </motion.div>
-
-        {/* Team Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={gridVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-storm/20 mb-16"
-        >
-          <h3 className="text-2xl font-bold text-navy text-center mb-8">Team Overview</h3>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { label: "Total Members", value: allMembers.length, color: "text-deep" },
-              { label: "Active Sectors", value: teamData.length, color: "text-slate" },
-              { label: "Leadership Roles", value: teamData.find(s => s.name === "Leadership")?.members.length || 0, color: "text-navy" },
-              { label: "Years Experience", value: "3+", color: "text-mist" }
-            ].map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                className="text-center"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={gridVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-              >
-                <div className={`text-3xl font-bold ${stat.color} mb-2`}>
-                  {stat.value}
-                </div>
-                <div className="text-sm text-deep font-medium">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   )
